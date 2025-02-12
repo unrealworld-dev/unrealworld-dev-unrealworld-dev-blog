@@ -4,6 +4,7 @@ export const siteConfig = {
 	description: "Make VR content using Unreal Engine",
 	author: "unrealworld.dev",
 	link: {
+		personalSite:"#",
 		github: "https://github.com/unrealworld-dev",
 		youtube: "https://www.youtube.com/@unrealworld-dev",
 		blog: "#"
