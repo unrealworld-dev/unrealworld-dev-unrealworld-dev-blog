@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { Icons } from "./icons";
 import { MainNav } from "./main-nav";
 import { MobileNav } from "./mobile-nav";
+import { ModeToggle } from "./mode-toggle";
 
 export function SiteHeader() {
 	return <header className="
@@ -26,6 +27,7 @@ export function SiteHeader() {
 						</div>
 					</Link>
 				</nav>
+				<ModeToggle/>
 				<MobileNav />
 			</div>
 		</div>
