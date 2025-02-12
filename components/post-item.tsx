@@ -17,7 +17,7 @@ export function PostItems({ slug, title, description, date }: PostItemProps) {
 				<Link href={slug}>{title}</Link>
 			</h2>
 		</div>
-		<div className="max-w-none text-muted-foreground">{description}</div>
+		<div className="max-w-none text-sm text-muted-foreground">{description}</div>
 		<div className="flex justify-between items-center">
 			<dl>
 				<dt className="sr-only">Published On</dt>
