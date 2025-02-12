@@ -1,12 +1,30 @@
 import { posts } from "#site/content"
 import { PostItems } from "@/components/post-item"
+import { QueryPagination } from "@/components/query-pagination";
 import { publishedPosts, sortPosts } from "@/lib/utils";
 
-export default async function Blogpage() {
+const POSTS_PER_PAGE = 5;
+
+interface BlogPageProps {
+	searchParams: {
+		page?: string;
+	};
+}
+
+export default async function Blogpage({ searchParams } : BlogPageProps) {
 	const publicedPosts = publishedPosts(posts);
 	const sortedPosts = sortPosts(publicedPosts);
-	const displayPosts = sortedPosts;
 
+	const searchParamData = await searchParams;
+
+	const currentPage = Number(searchParamData.page) || 1;
+	const totalPage = Math.ceil(sortedPosts.length / POSTS_PER_PAGE);
+
+	const displayPosts = sortedPosts.slice(
+		POSTS_PER_PAGE * (currentPage - 1),
+		POSTS_PER_PAGE * currentPage
+	);
+	
 	return (
 		<div className="container max-w-4xl p-6 lg:p-10">
 			<div className="flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">
@@ -29,6 +47,8 @@ export default async function Blogpage() {
 					})}
 				</ul>) :
 				(<p>아직 글이 없습니다</p>)}
+				<hr className="mt-8"/>
+				<QueryPagination currentPages={currentPage} totalPages={totalPage}/>
 		</div>
 	)
 
