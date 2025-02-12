@@ -4,6 +4,7 @@ import { buttonVariants } from "./ui/button";
 import { cn } from "@/lib/utils";
 import { Icons } from "./icons";
 import { MainNav } from "./main-nav";
+import { MobileNav } from "./mobile-nav";
 
 export function SiteHeader() {
 	return <header className="
@@ -15,16 +16,17 @@ export function SiteHeader() {
 			<div className="flex flex-1 items-center justify-end space-x-2">
 				<nav className="flex items-center">
 					<Link href={siteConfig.link.github} target="_blank" rel="noreferrer">
-						<div className={cn(buttonVariants({ variant: "ghost" }), "w-10 px-0")}>
-							<Icons.github className="h-8 w-8" />
+						<div className={cn(buttonVariants({ variant: "ghost" }), "w-10 px-0 hidden sm:inline-flex ")}>
+							<Icons.github className="h-4 w-4" />
 						</div>
 					</Link>
 					<Link href={siteConfig.link.youtube} target="_blank" rel="noreferrer">
-						<div className={cn(buttonVariants({ variant: "ghost" }), "w-10 px-0")}>
+						<div className={cn(buttonVariants({ variant: "ghost" }), "w-10 px-0 hidden sm:inline-flex ")}>
 							<Icons.youtube className="h-4 w-4" />
 						</div>
 					</Link>
 				</nav>
+				<MobileNav />
 			</div>
 		</div>
 	</header>
