@@ -2,8 +2,15 @@ import { posts } from "#site/content"
 import { PostItems } from "@/components/post-item"
 import { QueryPagination } from "@/components/query-pagination";
 import { publishedPosts, sortPosts } from "@/lib/utils";
+import { Metadata } from "next";
 
 const POSTS_PER_PAGE = 5;
+
+export const metadata: Metadata = {
+	title: "My Blog",
+	description: "This is a Blog of Unrealworld.dev",
+}
+
 
 interface BlogPageProps {
 	searchParams: {
