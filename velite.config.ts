@@ -1,4 +1,8 @@
 import { defineConfig, defineCollection, s } from 'velite'
+import rehypeslug from "rehype-slug"
+import rehypePrettyCode from "rehype-pretty-code"
+import rehypeAutolinkHeadings from "rehype-autolink-headings"
+
 
 // `s` is extended from Zod with some custom schemas,
 // you can also import re-exported `z` from `velite` if you don't need these extension schemas.
@@ -13,10 +17,11 @@ const posts = defineCollection({
     pattern: "blog/**/*.mdx",
     schema: s.object({
         slug: s.path(),
+        filename: s.string(),
         title: s.string().max(99),
         description: s.string().max(999).optional(),
         date: s.isodate(),
-        cover: s.image(),
+        cover: s.image().optional(),
         published: s.boolean().default(true),
         content: s.mdx()
         // 이미지 추가필요
@@ -35,7 +40,17 @@ export default defineConfig({
     },
     collections: { posts },
     mdx: {
-        rehypePlugins: [],
+        rehypePlugins: [
+            rehypeslug,
+            [rehypePrettyCode, { theme: "github-dark" }],
+            [rehypeAutolinkHeadings, {
+                behavior: "wrap",
+                properties: {
+                    className: ["subheading-anchor"],
+                    ariaLabel: "Link to section",
+                },
+            }],
+        ],
         remarkPlugins: [],
     },
 })

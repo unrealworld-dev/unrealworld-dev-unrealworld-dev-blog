@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import { useState } from "react";
 
@@ -35,7 +35,7 @@ export function MobileNav() {
 					<MobileLink onOpenChange={setOpen} href="/about">
 						About
 					</MobileLink>
-					
+
 				</div>
 			</SheetContent>
 		</Sheet>
