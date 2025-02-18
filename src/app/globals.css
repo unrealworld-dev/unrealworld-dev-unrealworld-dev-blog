@@ -2,20 +2,116 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jacquarda+Bastarda+9&display=swap');
+
+::-webkit-scrollbar {
+  display: none;
 }
+
+:root {
+  --white: #fcfcfc;
+  --black: #171717;
+}
+
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --color-default: #4b5563;
+    --color-hover: #7c3aed;
+    --color-hover-red: #ec3434;
+    --color-hover-sun: #f3753a;
+    --color-hover-moon: #f7f322;
+    --neon-color: var(--white);
+    --hover-transition-time: 0.6s;
+
+    --border-color-light: rgba(255,255,255,0.1);
+    ;
+    --border-color-dark: rgba(0,0,0,0.1);
   }
+}
+
+.light {
+  --background: var(--white);
+  --foreground: var(--black);
+  --border-color: var(--border-color-dark);
+}
+
+.dark {
+  --background: var(--black);
+  --foreground: var(--white);
+
+  --border-color: var(--border-color-light);
+
+  --primary: 210 40% 98%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+}
+
+html {
+  scrollbar-width: none;
+  transition: var(--background-color) 0.5s ease-in-out, color 0.5s ease-in-out;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.color-default {
+  color: var(--color-default);
+  transition: color 0.2s ease-in-out;
+}
+
+.color-hover:hover {
+  color: var(--color-hover);
+  transition: var(--hover-transition-time);
+}
+
+.color-hover-red:hover {
+  color: var(--color-hover-red);
+  transition: var(--hover-transition-time);
+}
+
+.color-hover-moon:hover {
+  color: var(--color-hover-moon);
+  transition: var(--hover-transition-time);
+}
+
+.color-hover-sun:hover {
+  color: var(--color-hover-sun);
+  transition: var(--hover-transition-time);
+}
+
+/* theme mode */
+
+.theme-transition::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--background) 0%, var(--foreground) 100%);
+  z-index: 9999;
+  animation: fadeOut 1s ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+
+/* font */
+.jacquarda-bastarda-9-regular {
+  font-family: "Jacquarda Bastarda 9", serif;
+  font-weight: 400;
+  font-style: normal;
 }
