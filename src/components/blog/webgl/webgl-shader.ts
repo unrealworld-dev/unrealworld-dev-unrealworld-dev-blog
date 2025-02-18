@@ -13,9 +13,6 @@ function createShader(gl: WebGL2RenderingContext, type: GLenum, source: string) 
 };
 
 export function createProgram(gl: WebGL2RenderingContext, vertexSource: string, fragmentSource: string) {
-	console.log("🔧 Shader Compilation Started"); // 추가
-	console.log("🟢 Vertex Shader Source:", vertexSource); // 추가
-	console.log("🔴 Fragment Shader Source:", fragmentSource); // 추가
 
 	const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexSource);
 	const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentSource);
@@ -24,11 +21,9 @@ export function createProgram(gl: WebGL2RenderingContext, vertexSource: string, 
 
 	gl.shaderSource(vertexShader, vertexSource);
 	gl.compileShader(vertexShader);
-	console.log("🟢 Vertex Shader Log:", gl.getShaderInfoLog(vertexShader));
 
 	gl.shaderSource(fragmentShader, fragmentSource);
 	gl.compileShader(fragmentShader);
-	console.log("🔴 Fragment Shader Log:", gl.getShaderInfoLog(fragmentShader));
 
 	const program = gl.createProgram();
 
@@ -39,7 +34,6 @@ export function createProgram(gl: WebGL2RenderingContext, vertexSource: string, 
 	gl.attachShader(program, vertexShader);
 	gl.attachShader(program, fragmentShader);
 	gl.linkProgram(program);
-	console.log("💡 Program Link Log:", gl.getProgramInfoLog(program));
 
 	if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
 		console.error("program link Fail : ", gl.getProgramInfoLog(program));

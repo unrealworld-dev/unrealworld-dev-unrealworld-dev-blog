@@ -5,41 +5,65 @@ import { createProgram } from "@/components/blog/webgl/webgl-shader";
 
 import vertexShaderSource from "./glsl/planet-vertex.glsl"
 import fragmentShaderSource from "./glsl/planet-framgent.glsl"
+import { createSphere, SphereData } from '@/libs/webgl/sphere'
 
 
-function CreatePlanet(gl: WebGL2RenderingContext, program: WebGLProgram, canvas: HTMLCanvasElement) {
-    // 🔹 정점 버퍼 생성
-    const positionBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-
-    // 🔹 화면을 가득 채울 삼각형 2개 (정점 6개)
-    const positions = new Float32Array([
-        -1, -1, 1, -1, -1, 1,  // 첫 번째 삼각형
-        -1, 1, 1, -1, 1, 1   // 두 번째 삼각형
-    ]);
-
-    gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
-
-    // 🔹 정점 속성 설정
-    const positionAttributeLocation = gl.getAttribLocation(program, "a_position");
-    gl.enableVertexAttribArray(positionAttributeLocation);
-    gl.vertexAttribPointer(positionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
-
-    // 🔹 유니폼 변수 설정 (해상도 전달)
-    const resolutionUniformLocation = gl.getUniformLocation(program, "u_resolution");
-    gl.uniform2f(resolutionUniformLocation, canvas.width, canvas.height);
+export type AttributeWebGL = {
+    indexLoc: GLuint;
+    size: GLint;
+    type: GLenum;
+    normalized?: GLboolean;
+    stride?: GLsizei;
+    offset?: GLintptr;
 }
 
-function CreateLight(gl: WebGL2RenderingContext, program: WebGLProgram) {
-
-    const lightPosLocation = gl.getUniformLocation(program, "u_lightPos");
-    gl.uniform3f(lightPosLocation, 1.0, 1.0, 2.0);
+export type BindBufferGL = {
+    target: GLenum;
+    srcData: AllowSharedBufferSource | null;
+    usage: GLenum
 }
 
-function CreateCamera(gl: WebGL2RenderingContext, program: WebGLProgram) {
-    const cameraPosLocation = gl.getUniformLocation(program, "u_cameraPos");
-    gl.uniform3f(cameraPosLocation, 0.0, 0.0, 2.0);
+
+function createSphereBuffers(gl: WebGL2RenderingContext, sphereData: SphereData) {
+    const vao = gl.createVertexArray();
+    const vbo = gl.createBuffer();
+    const ebo = gl.createBuffer();
+    const normalBuffer = gl.createBuffer();
+    const texCoordBuffer = gl.createBuffer();
+
+    function setupBuffer(buffer: WebGLBuffer, bindBuffer: BindBufferGL, attributeData?: AttributeWebGL) {
+        gl.bindBuffer(bindBuffer.target, buffer);
+        gl.bufferData(bindBuffer.target, bindBuffer.srcData, bindBuffer.usage);
+        if (attributeData) {
+            gl.enableVertexAttribArray(attributeData.indexLoc);
+            gl.vertexAttribPointer(attributeData.indexLoc, attributeData.size, attributeData.type, attributeData.normalized ?? false, attributeData.stride ?? 0, attributeData.offset ?? 0);
+        }
+    }
+
+    gl.bindVertexArray(vao);
+
+    setupBuffer(vbo,
+        { target: gl.ARRAY_BUFFER, srcData: new Float32Array(sphereData.vertices), usage: gl.STATIC_DRAW },
+        { indexLoc: 0, size: 3, type: gl.FLOAT, normalized: false }
+    )
+
+    setupBuffer(normalBuffer,
+        { target: gl.ARRAY_BUFFER, srcData: new Float32Array(sphereData.normals), usage: gl.STATIC_DRAW },
+        { indexLoc: 1, size: 3, type: gl.FLOAT, normalized: false }
+    )
+
+    setupBuffer(texCoordBuffer,
+        { target: gl.ARRAY_BUFFER, srcData: new Float32Array(sphereData.texCoords), usage: gl.STATIC_DRAW },
+        { indexLoc: 2, size: 2, type: gl.FLOAT, normalized: false }
+    )
+
+    setupBuffer(ebo,
+        { target: gl.ELEMENT_ARRAY_BUFFER, srcData: new Uint16Array(sphereData.indices), usage: gl.STATIC_DRAW }
+    )
+
+    return { vao, vbo, ebo, normalBuffer, texCoordBuffer, indexCount: sphereData.indices.length };
 }
+
 
 export default function WebGLPlanet() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -60,19 +84,29 @@ export default function WebGLPlanet() {
 
         gl.useProgram(program);
 
-        CreatePlanet(gl, program, canvas);
-        CreateLight(gl, program);
-        CreateCamera(gl, program);
+        const sphere = createSphere(1.0, 32, 32);
+        const sphereBuffers = createSphereBuffers(gl, sphere);
+        gl.bindVertexArray(sphereBuffers.vao);
 
         // 🔹 WebGL 렌더링
         gl.clearColor(0, 0, 0, 1);
         gl.clear(gl.COLOR_BUFFER_BIT);
-        gl.drawArrays(gl.TRIANGLES, 0, 6); // 전체 화면 렌더링
+
+        gl.drawElements(gl.TRIANGLES, sphereBuffers.indexCount, gl.UNSIGNED_SHORT, 0);
+
 
         return () => {
             console.log("Cleaning up WebGL resources...");
             gl.useProgram(null);
             gl.bindBuffer(gl.ARRAY_BUFFER, null);
+            gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null);
+
+            // 리소스 삭제
+            gl.deleteBuffer(sphereBuffers.vbo);
+            gl.deleteBuffer(sphereBuffers.ebo);
+            gl.deleteBuffer(sphereBuffers.normalBuffer);
+            gl.deleteBuffer(sphereBuffers.texCoordBuffer);
+            gl.deleteVertexArray(sphereBuffers.vao);
         };
     }, []);
 
