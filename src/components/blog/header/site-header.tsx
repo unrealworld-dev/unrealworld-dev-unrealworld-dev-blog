@@ -1,32 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { jacquarda, vt323 } from "@/utils/fonts";
-import { Menu, Telescope, Heart } from "lucide-react";
+import { vt323 } from "@/utils/fonts";
+import { Telescope, Heart } from "lucide-react";
 import { IconHoverShake } from "@/components/utils/icon-button";
 import { ThemeModeToggle } from "./theme-mode";
 import NavBar from "./nav-bar";
 
 export function SiteHeader() {
-  const [visible, setVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
-
   const [likes, setLikes] = useState(0); // 좋아요 카운트 포스트에서 가져와야함
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > lastScrollY) {
-        setVisible(false);
-      } else {
-        setVisible(true);
-      }
-      setLastScrollY(window.scrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
 
   return (
     <header className="
