@@ -12,7 +12,7 @@ export function SiteHeader() {
   const [likes, setLikes] = useState(0); // 좋아요 카운트 포스트에서 가져와야함
 
   return (
-    <header className="
+    <header className="z-300
     fixed top-3 left-1/2 -translate-x-1/2 w-[92%] max-w-3xl 
     rounded-full p-3 px-6 
     transition-all duration-300 
@@ -40,7 +40,7 @@ export function SiteHeader() {
         </div>
 
         <div className="flex justify-end items-center space-x-6">
-          <NavBar/>
+          <NavBar />
           <ThemeModeToggle />
         </div>
       </div>

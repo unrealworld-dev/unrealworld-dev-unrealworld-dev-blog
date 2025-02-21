@@ -1,0 +1,29 @@
+@keyframes moveDown {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(30px);  /* 15px에서 30px로 변경 */
+    opacity: 0;
+  }
+}
+
+.arrow {
+  animation: moveDown 2s ease-in-out infinite;  /* 1.5s에서 2s로 변경 */
+}
+
+.arrow1 {
+  animation-delay: 0s;
+}
+
+.arrow2 {
+  animation-delay: 0.3s;  /* 0.25s에서 0.5s로 변경 */
+}
+
+.arrow3 {
+  animation-delay: 0.6s;    /* 0.5s에서 1s로 변경 */
+}
