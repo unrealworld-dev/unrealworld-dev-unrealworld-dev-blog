@@ -60,7 +60,7 @@ export default function Typewriter({
 		<div className={`font-mono ${className}`}>
 			<span>{displayText}</span>
 			<span
-				className={`inline-block w-[2px] h-[1em] ml-[2px] align-middle bg-[--foreground] ${isTypingComplete ? styles['animate-cursor-blink'] : 'opacity-100'}`}
+				className={`inline-block w-[2px] h-[1em] ml-[2px] align-middle bg-[--white] ${isTypingComplete ? styles['animate-cursor-blink'] : 'opacity-100'}`}
 				style={{
 					animationDuration: '1s',
 					animationIterationCount: 'infinite',

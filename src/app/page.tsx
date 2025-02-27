@@ -1,12 +1,13 @@
-import ScrollDownIndicator from "@/components/blog/title/ScrollDownIndicator";
-import TitleImage from "@/components/blog/title/TitleImage";
-import Typewriter from "@/components/blog/title/TypingTitle";
+import InfoBlog from "@/components/blog/main/info/info-blog";
+import ScrollDownIndicator from "@/components/blog/main/title/ScrollDownIndicator";
+import TitleImage from "@/components/blog/main/title/TitleImage";
+import Typewriter from "@/components/blog/main/title/TypingTitle";
 import { vt323, } from "@/utils/fonts";
 
 export default function Home() {
   return (
-    <div>
-      <div className="flex-col z-0">
+    <div className="h-full">
+      <div className="flex-col h-full z-0">
         <div className="h-0">
           <TitleImage />
         </div>
@@ -30,6 +31,9 @@ export default function Home() {
             </p>
             <ScrollDownIndicator />
           </div>
+        </div>
+        <div className="p-12 bg-[--background] h-full">
+          <InfoBlog/>
         </div>
         <div className="text-center text-white mt-8">다음 글입니다</div>
       </div>

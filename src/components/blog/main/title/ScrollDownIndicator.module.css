@@ -1,19 +1,19 @@
 @keyframes moveDown {
   0% {
-    transform: translateY(0);
+    transform: translateY(0) translateX(-12px);
     opacity: 0;
   }
   50% {
     opacity: 1;
   }
   100% {
-    transform: translateY(30px);  /* 15px에서 30px로 변경 */
+    transform: translateY(30px) translateX(-12px);
     opacity: 0;
   }
 }
 
 .arrow {
-  animation: moveDown 2s ease-in-out infinite;  /* 1.5s에서 2s로 변경 */
+  animation: moveDown 2s ease-in-out infinite;
 }
 
 .arrow1 {

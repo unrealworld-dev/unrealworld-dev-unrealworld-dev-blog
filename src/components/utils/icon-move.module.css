@@ -1,0 +1,141 @@
+/* 기존 애니메이션 */
+@keyframes jumpIcon {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  60% {
+    transform: translateY(4px);
+  }
+  75% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes moveIcon {
+  0% {
+    transform: translateX(-10px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(-10px);
+  }
+}
+
+/* 회전 애니메이션 */
+@keyframes rotateIcon {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* 흔들림 애니메이션 */
+@keyframes shakeIcon {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(10deg);
+  }
+}
+
+/* 크기 변화 애니메이션 */
+@keyframes pulseIcon {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+/* 깜빡임 애니메이션 */
+@keyframes blinkIcon {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* 진동 애니메이션 */
+@keyframes vibrateIcon {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-3px);
+  }
+  40% {
+    transform: translateX(3px);
+  }
+  60% {
+    transform: translateX(-3px);
+  }
+  80% {
+    transform: translateX(3px);
+  }
+}
+
+/* 바운스 애니메이션 */
+@keyframes bounceIcon {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-15px);
+  }
+  60% {
+    transform: translateY(-7px);
+  }
+}
+
+/* 애니메이션 클래스 적용 */
+.icon-jump {
+  animation: jumpIcon 3s ease-in-out infinite;
+}
+
+.icon-move {
+  animation: moveIcon 3s ease-in-out infinite;
+}
+
+.icon-rotate {
+  animation: rotateIcon 4s linear infinite;
+}
+
+.icon-shake {
+  animation: shakeIcon 2s ease-in-out infinite;
+}
+
+.icon-pulse {
+  animation: pulseIcon 2s ease-in-out infinite;
+}
+
+.icon-blink {
+  animation: blinkIcon 2s ease-in-out infinite;
+}
+
+.icon-vibrate {
+  animation: vibrateIcon 0.5s ease-in-out infinite;
+}
+
+.icon-bounce {
+  animation: bounceIcon 2s ease-in-out infinite;
+}

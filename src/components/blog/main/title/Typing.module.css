@@ -14,5 +14,5 @@
 /* 기본 커서 색상 (라이트 모드에서 사용) */
 .animate-cursor-blink {
   animation: cursor-blink 1s infinite;
-	background-color: var(--foreground); /* 다크 모드에서 커서 색상 */
+	background-color: var(--white); /* 다크 모드에서 커서 색상 */
 }

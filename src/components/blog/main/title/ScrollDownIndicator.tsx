@@ -20,7 +20,7 @@ export default function ScrollDownIndicator() {
             />
           </svg>
           <svg 
-            className={`w-6 h-6 text-white opacity-50 absolute top-0 ${style.arrow} ${style.arrow2}`}
+            className={`w-6 h-6  text-white opacity-50 absolute top-0 ${style.arrow} ${style.arrow2}`}
             fill="none" 
             stroke="currentColor" 
             viewBox="0 0 24 24"
