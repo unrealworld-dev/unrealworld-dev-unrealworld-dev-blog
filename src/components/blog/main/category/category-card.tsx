@@ -12,12 +12,14 @@ export default function CategoryCard({ title = "title", description = "descripti
 					src={imageSrc}
 					alt={title}
 					fill
+					sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+					className="object-cover"
 				/>
 			</div>
-					<div className="p-4 text-center" style={{ fontFamily: 'Dunggeunmo' }}>
-						<h2 className="text-2xl font-semibold text-[--foreground]">{title}</h2>
-						<p className="text-[--foreground] mt-2" >{description}</p>
-					</div>
+			<div className="p-4 text-center" style={{ fontFamily: 'Dunggeunmo' }}>
+				<h2 className="text-2xl font-semibold text-[--foreground]">{title}</h2>
+				<p className="text-[--foreground] mt-2" >{description}</p>
+			</div>
 		</div>
 	);
 }
