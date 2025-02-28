@@ -16,7 +16,6 @@ export default async function BlogPostPage({params} : Props) {
 	const mdxContent = await import(`@/content/${postPath}.mdx`);
 
 	const Post = mdxContent.default;
-	console.log(mdxContent, Post)
 	return <Post />
 }
 

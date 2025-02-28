@@ -11,8 +11,7 @@ export default function CategoryCard({ title = "title", description = "descripti
 				<Image
 					src={imageSrc}
 					alt={title}
-					layout="fill"
-					objectFit="cover"
+					fill
 				/>
 			</div>
 					<div className="p-4 text-center" style={{ fontFamily: 'Dunggeunmo' }}>
