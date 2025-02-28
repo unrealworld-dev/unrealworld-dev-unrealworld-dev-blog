@@ -12,11 +12,14 @@ type IconHoverShakeProps = Readonly<{
 export function IconHoverShake({ children, className = "", onClick = () => { } }: IconHoverShakeProps) {
 
 	return (
-		<motion.button onClick={onClick} whileHover={{
-			rotate: [-5, 5, -5, 0],
-			transition: { duration: 0.5, repeat: 0.5 },
-			className: className
-		}}>
+		<motion.button onClick={onClick}
+			className={className}
+			whileHover={{
+				rotate: [-5, 5, -5, 0],
+				transition: { duration: 0.5, repeat: 0.5 },
+			}}
+			
+		>
 			{children}
 		</motion.button>
 	)
