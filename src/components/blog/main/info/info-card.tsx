@@ -16,10 +16,10 @@ export default function InfoCard({ classname, label = "label", count, icon }: { 
         <LineBar />
         <br className={style.line} />
         {/* 내부 정의 */}
-        <p className={`${vt323.className} text-6xl font-extrabold text-primary-foreground`}>
+        <p className={`${vt323.className} text-6xl font-extrabold text-primary-foreground  text-center`}>
           {count.toLocaleString()}
         </p>
-        <p className="text-sm mt-2 opacity-75">{label}</p>
+        <p className="text-sm mt-2 opacity-75 text-center">{label}</p>
       </div>
     </div>
   );

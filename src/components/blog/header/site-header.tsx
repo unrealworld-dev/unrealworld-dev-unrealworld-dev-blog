@@ -12,12 +12,13 @@ export function SiteHeader() {
   const [likes, setLikes] = useState(0); // 좋아요 카운트 포스트에서 가져와야함
 
   return (
-    <header className="z-300
+    <header className="
     fixed top-3 left-1/2 -translate-x-1/2 w-[92%] max-w-3xl 
     rounded-full p-3 px-6 
     transition-all duration-300 
     backdrop-blur-sm
     border-4 border-[var(--border-color)]
+    z-10
     ">
       <div className="grid grid-cols-3 items-center">
         <div className="flex items-center space-x-3">

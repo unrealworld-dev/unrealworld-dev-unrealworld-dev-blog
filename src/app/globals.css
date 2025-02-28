@@ -21,6 +21,8 @@
 :root {
   --white: #fcfcfc;
   --black: #171717;
+  --lite-white: #d1d1d1;
+  --lite-black: #2f2f2f;
 }
 
 
@@ -43,12 +45,16 @@
 .light {
   --background: var(--white);
   --foreground: var(--black);
+  --lite-background: var(--lite-white);
+  --lite-foreground: var(--lite-black);
   --border-color: var(--border-color-dark);
 }
 
 .dark {
   --background: var(--black);
   --foreground: var(--white);
+  --lite-background: var(--lite-black);
+  --lite-foreground: var(--lite-white);
 
   --border-color: var(--border-color-light);
 

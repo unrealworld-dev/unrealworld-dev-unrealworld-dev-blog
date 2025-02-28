@@ -1,3 +1,4 @@
+import Category from "@/components/blog/main/category/category";
 import InfoBlog from "@/components/blog/main/info/info-blog";
 import ScrollDownIndicator from "@/components/blog/main/title/ScrollDownIndicator";
 import TitleImage from "@/components/blog/main/title/TitleImage";
@@ -34,7 +35,9 @@ export default function Home() {
         </div>
         <div className="p-12 bg-[--background] h-full">
           <InfoBlog/>
+          <Category/>
         </div>
+
         <div className="text-center text-white mt-8">다음 글입니다</div>
       </div>
     </div>
