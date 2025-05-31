@@ -1,0 +1,49 @@
+.loadingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #333;
+  font-family: Arial, sans-serif;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.jumpingText {
+  display: flex;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #f0f0f0;
+}
+
+.jumpingText span {
+  display: inline-block;
+  animation: jump 0.5s infinite alternate;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    color: #f0f0f0;
+  }
+  100% {
+    transform: translateY(-20px) rotate(10deg);
+    color: #7c3aed;
+  }
+}
+
+/* 위로 사라지는 효과 */
+.fadeOutUp {
+  animation: fadeOutUp 0.5s ease forwards;
+}
+
+@keyframes fadeOutUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+}

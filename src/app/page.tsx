@@ -1,4 +1,6 @@
 import Category from "@/components/blog/main/category/category";
+import FollowView from "@/components/blog/main/follow/follow";
+import GithubFollowing from "@/components/blog/main/follow/github-following";
 import InfoBlog from "@/components/blog/main/info/info-blog";
 import ScrollDownIndicator from "@/components/blog/main/title/ScrollDownIndicator";
 import TitleImage from "@/components/blog/main/title/TitleImage";
@@ -39,11 +41,12 @@ function TitleView() {
 
 function HomeView() {
   return (
-    <div className="p-12 bg-[--background] h-full">
-      <div className=" max-w-7xl m-auto">
+    <div className="p-12  bg-white dark:bg-black bg-[--background] h-full min-h-screen">
+      <div className=" max-w-7xl m-auto min-h-screen">
         <InfoBlog />
         <Category />
         <LastPosts />
+        <FollowView />
       </div>
     </div>
   )
@@ -55,9 +58,9 @@ export default function Home() {
       <div className="flex-col h-full z-0">
         <TitleView />
         <HomeView />
-
         <div className="text-center text-white mt-8">다음 글입니다</div>
       </div>
+      <div></div>
     </div>
   );
 }

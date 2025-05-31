@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" >
-      <body className="absolute">
+      <body>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

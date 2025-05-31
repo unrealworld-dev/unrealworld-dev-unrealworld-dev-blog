@@ -1,5 +1,6 @@
 "use client"
 
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 export default function TitleImage() {
@@ -18,18 +19,21 @@ export default function TitleImage() {
 
 	return (
 		<div className="flex h-screen w-screen z-0">
-			<img
+			<Image
 				src="/images/example-move-image.gif"
 				alt="Animation"
 				style={{
 					width: '100vw',
 					height: '100vh',
 					objectFit: 'cover',
-					position: 'fixed', // 이미지가 화면에 고정되도록 설정
-					top: `${scrollY * -0.3}px`, // 스크롤에 따라 조금씩 내려감 (0.3배 속도)
+					position: 'fixed',
+					top: `${scrollY * -0.3}px`,
 					left: '0',
-					zIndex: -100, // z-index 추가 (고정된 이미지가 다른 콘텐츠 위에 오도록 설정)
+					zIndex: -100,
 				}}
+				width={1024}
+				height={1024}
+				unoptimized 
 			/>
 		</div>
 	);

@@ -2,6 +2,7 @@
 
 import { ThemeProvider as NextThemesProvider } from "next-themes"
 import { useEffect, useState } from "react";
+import LoadingView from "../loading/loading-view";
 
 export function ThemeProvider({
 	children,
@@ -13,7 +14,15 @@ export function ThemeProvider({
 		setMounted(true);
 	}, []);
 
-	if (!mounted) return <div>{children}</div>;
+	if (!mounted) return (
+		<div className="w-full h-full">
+			<LoadingView isLoading/>
+			<div className="invisible h-0 overflow-hidden">{children}</div>
+		</div>
+	);
 
-	return <NextThemesProvider {...props}>{children}</NextThemesProvider>
+	return <NextThemesProvider {...props}>
+		<LoadingView />
+		{children}
+		</NextThemesProvider>
 }
