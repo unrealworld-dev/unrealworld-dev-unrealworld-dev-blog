@@ -8,7 +8,16 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings"
 
 const nextConfig: NextConfig = {
   /* config options here */
-  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx']
+  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+
+  webpack: (config) => {
+    if (!config.module) return config;
+    config.module.rules.push({
+      test: /\.(glsl|vs|fs|vert|frag)$/, // GLSL 확장자들
+      use: "raw-loader", // GLSL을 문자열로 변환
+    })
+    return config;
+  }
 };
 
 const withMDX = createMDX({

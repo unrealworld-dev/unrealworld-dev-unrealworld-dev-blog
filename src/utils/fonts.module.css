@@ -1,0 +1,9 @@
+/* public/styles/fonts.css */
+@font-face {
+  font-family: 'Dunggeunmo';
+  src: url('/fonts/DungGeunMo.woff2') format('woff2'),
+       url('/fonts/DungGeunMo.woff') format('woff'),
+       url('/fonts/DungGeunMo.eot') format('eot'); 
+  font-weight: normal;
+  font-style: normal;
+}

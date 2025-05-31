@@ -1,0 +1,18 @@
+/* typing.module.css */
+
+/* 커서 깜박이는 애니메이션 */
+@keyframes cursor-blink {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+/* 기본 커서 색상 (라이트 모드에서 사용) */
+.animate-cursor-blink {
+  animation: cursor-blink 1s infinite;
+	background-color: var(--white); /* 다크 모드에서 커서 색상 */
+}
